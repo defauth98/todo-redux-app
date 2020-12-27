@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { SiTodoist } from 'react-icons/si';
-import { BsPeopleCircle, BsSearch } from 'react-icons/bs';
+import { BsPeopleCircle } from 'react-icons/bs';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const Header: React.FC = () => {
+  const [tasks, setTasks] = useState<[string]>(['']);
+  const [inputTask, setInputTask] = useState('');
+
+  function addNewTask() {
+    const taskArray = tasks;
+
+    taskArray.push(inputTask);
+
+    setTasks(taskArray);
+  }
+
   return (
     <header className="border-b-2 h-16 p-4 px-8 shadow w-full">
       <div className="flex items-center justify-between">
@@ -13,12 +25,21 @@ const Header: React.FC = () => {
         </div>
 
         <div className="flex items-center relative">
-          <BsSearch size={20} color="blue" className="absolute left-2" />
           <input
             type="text"
             className="border h-8 rounded-md w-96 text-center"
-            placeholder="Search task"
+            placeholder="Make something"
+            onChange={(e) => setInputTask(e.target.value)}
           />
+
+          <button
+            className="px-4 mx-4 h-8 bg-blue-700 border-blue-700 rounded"
+            onClick={addNewTask}
+          >
+            {' '}
+            <AiOutlinePlus size={20} color="blue" className="absolute left-2" />
+            <span className="text-white">Add</span>
+          </button>
         </div>
 
         <div className="flex items-center cursor-pointer">

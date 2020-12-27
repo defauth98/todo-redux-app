@@ -2,6 +2,7 @@ import React from 'react';
 
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import TodoList from '../components/TodoList';
 
 const TodoListPage: React.FC = () => {
   return (
@@ -12,7 +13,12 @@ const TodoListPage: React.FC = () => {
         </div>
         <div className="flex h-full">
           <Sidebar />
-          <main className="w-4/5">Tasks</main>
+          <TodoList
+            tasks={[
+              'Write a file with nothing',
+              'Make something who does not make sense',
+            ]}
+          />
         </div>
       </div>
     </div>

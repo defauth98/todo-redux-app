@@ -2,9 +2,15 @@ import React from 'react';
 
 interface TodoItemProps {
   task: string;
+  done: boolean;
+  id: number;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ task }) => {
+const TodoItem: React.FC<TodoItemProps> = ({
+  task,
+  done,
+  id,
+}: TodoItemProps) => {
   return (
     <li className="flex items-center my-6">
       <input

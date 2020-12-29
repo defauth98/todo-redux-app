@@ -1,30 +1,26 @@
 import React from 'react';
 
-import TodoItem from './TodoItem';
+import TodoItem from '../components/TodoItem';
 
-interface TodoListProps {
-  tasks: Array<string>;
+interface Todo {
+  task: string;
+  done: boolean;
+  id: number;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ tasks }) => {
-  console.log(tasks);
+interface TodoListProps {
+  todos: Array<Todo>;
+}
 
-  function renderItems() {
-    if (tasks[0].length > 2) {
-      console.log('maior que dois');
-
-      return tasks.map((task) => <TodoItem task={task} key={task} />);
-    }
-
-    console.log('menor que dois');
-
-    return;
-  }
-
+const TodoList: React.FC<TodoListProps> = ({ todos }) => {
   return (
     <main className="w-4/5 m-8">
       <h1 className="text-3xl text-blue-700 mb-4">Inbox</h1>
-      <ul>{renderItems}</ul>
+      <ul>
+        {todos.map((todo) => (
+          <TodoItem task={todo.task} done={todo.done} id={todo.id} />
+        ))}
+      </ul>
     </main>
   );
 };

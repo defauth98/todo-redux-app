@@ -4,16 +4,19 @@ import { SiTodoist } from 'react-icons/si';
 import { BsPeopleCircle } from 'react-icons/bs';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-const Header: React.FC = () => {
-  const [tasks, setTasks] = useState<[string]>(['']);
-  const [inputTask, setInputTask] = useState('');
+interface HeaderProps {
+  addTodo(task: string): void;
+}
 
-  function addNewTask() {
-    const taskArray = tasks;
+const Header: React.FC<HeaderProps> = ({ addTodo }) => {
+  const [input, setInput] = useState('');
 
-    taskArray.push(inputTask);
+  function inputHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    setInput(event.target.value);
+  }
 
-    setTasks(taskArray);
+  function buttonHandler() {
+    addTodo(input);
   }
 
   return (
@@ -27,14 +30,15 @@ const Header: React.FC = () => {
         <div className="flex items-center relative">
           <input
             type="text"
+            onChange={inputHandler}
+            value={input}
             className="border h-8 rounded-md w-96 text-center"
             placeholder="Make something"
-            onChange={(e) => setInputTask(e.target.value)}
           />
 
           <button
             className="px-4 mx-4 h-8 bg-blue-700 border-blue-700 rounded"
-            onClick={addNewTask}
+            onClick={buttonHandler}
           >
             {' '}
             <AiOutlinePlus size={20} color="blue" className="absolute left-2" />

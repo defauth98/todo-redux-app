@@ -17,6 +17,8 @@ const Header: React.FC<HeaderProps> = ({ addTodo }) => {
 
   function buttonHandler() {
     addTodo(input);
+
+    setInput('');
   }
 
   return (

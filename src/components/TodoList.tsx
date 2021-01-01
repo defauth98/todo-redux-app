@@ -9,16 +9,23 @@ interface Todo {
 }
 
 interface TodoListProps {
+  handleDeleteTask(id: number): void;
   todos: Array<Todo>;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, handleDeleteTask }) => {
   return (
     <main className="w-4/5 m-8">
       <h1 className="text-3xl text-blue-700 mb-4">Inbox</h1>
       <ul>
         {todos.map((todo) => (
-          <TodoItem task={todo.task} done={todo.done} id={todo.id} />
+          <TodoItem
+            key={todo.id}
+            task={todo.task}
+            done={todo.done}
+            id={todo.id}
+            handleDeleteTask={handleDeleteTask}
+          />
         ))}
       </ul>
     </main>

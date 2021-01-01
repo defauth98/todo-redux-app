@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import { AiFillDelete } from 'react-icons/ai';
+
 interface TodoItemProps {
+  handleDeleteTask(id: number): void;
   task: string;
   done: boolean;
   id: number;
@@ -10,6 +13,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   task,
   done,
   id,
+  handleDeleteTask,
 }: TodoItemProps) => {
   const [doneTask, setDoneTask] = useState(false);
 
@@ -38,6 +42,10 @@ const TodoItem: React.FC<TodoItemProps> = ({
       <span className={`text-xl ${doneTask ? 'line-through' : ''}`}>
         {task}
       </span>
+
+      <button onClick={() => handleDeleteTask(id)}>
+        <AiFillDelete size={30} color="blue"></AiFillDelete>
+      </button>
     </li>
   );
 };

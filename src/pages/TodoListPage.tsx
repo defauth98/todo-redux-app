@@ -12,6 +12,7 @@ interface Todo {
 
 const TodoListPage: React.FC = () => {
   const [todos, setTodos] = useState<Array<Todo>>([]);
+  const [id, setID] = useState(0);
 
   function addTodo(task: string) {
     if (task.length < 2) {
@@ -21,10 +22,16 @@ const TodoListPage: React.FC = () => {
     const newTask: Todo = {
       task,
       done: false,
-      id: Math.random() * 1000,
+      id: id,
     };
 
     if (todos) setTodos([newTask, ...todos]);
+
+    setID(id + 1);
+  }
+
+  function handleDeleteTask(id: number) {
+    setTodos(todos.filter((todo) => todo.id !== id));
   }
 
   return (
@@ -35,7 +42,7 @@ const TodoListPage: React.FC = () => {
         </div>
         <div className="flex h-full">
           <Sidebar />
-          <TodoList todos={todos} />
+          <TodoList todos={todos} handleDeleteTask={handleDeleteTask} />
         </div>
       </div>
     </div>

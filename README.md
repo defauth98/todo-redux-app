@@ -11,7 +11,7 @@ Aplicação web de um lista de tarefas.
 
 ### :nut_and_bolt: Tecnologias
 
-Esse projeto foi desenvolvido com as seguintes técnologias:
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [React][reactjs]
 - [Redux][redux]
